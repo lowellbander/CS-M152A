@@ -1,4 +1,8 @@
 \documentclass[]{article}
+
+\usepackage{float}
+\usepackage{graphicx}
+
 \usepackage{titling}
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -17,6 +21,33 @@
 
 \section{FPGA Design Workflow}
 \section{Example Program}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ l | l }
+\textbf{Sequencer Instruction} & \textbf{Binary}\\\hline
+\texttt{PUSH R0 0x4} & \texttt{0000 0010}\\
+\texttt{PUSH R0 0x0} & \texttt{0000 0000}\\
+\texttt{PUSH R1 0x3} & \texttt{0001 0011}\\
+\texttt{MULT R0 R1 R2} & \texttt{1000 0110}\\
+\texttt{ADD R2 R0 R3} & \texttt{0110 0011}\\
+\texttt{PUSH R0 0x4} & \texttt{0000 0100}\\
+\texttt{SEND R0} & \texttt{1100  xxxx}\\
+\texttt{SEND R1} & \texttt{1101  xxxx}\\
+\texttt{SEND R2} & \texttt{1110  xxxx}\\
+\texttt{SEND R3} & \texttt{1111  xxxx}\\
+\end{tabular}
+\caption{Sequencer instructions translated to binary. The four least significant bits are `don't care' as their value is not used for the \texttt{SEND} instruction.}
+\label{table:translation}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{translation.png}
+\caption{UART console output resulting from the executions in Table~\ref{table:translation}.}
+\end{figure}
+
+
 \section{Fibonacci}
 \section{Exercise 1}
 \section{Exercise 2}

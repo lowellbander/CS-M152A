@@ -31,7 +31,7 @@ The design stage of the FPGA development workflow is done outside of the the Xil
 
 \subsection{Implementation}
 
-Lorem ipsum.
+The hierarchical file structure is determined based on which modules depend on others. At the very top-level we have a test bench file, \texttt{tb.v} which is directly above a unit under test file, \texttt{nexys3.v}. Below that we have a sequencer file and a uart file, \texttt{seq.v} and \texttt{uart\_top.v}. The sequencer is composed of the register file, \texttt{seq\_rf.v} and the ALU unit which has add and multiply modules. The Uart module represents the interface to the computer where we see the output. The Uart module is only needed for testing so it is not a part of the sequencer module.
 
 \subsection{Simulation}
 

@@ -88,48 +88,33 @@ Lorem ipsum.
 
 For this section, we generated the first 10 Fibonacci numbers by writing the necessary sequencer instructions, translating them into machine instructions, and then loading them into the simulator using the \texttt{\$fopen} and \texttt{\$fscanf}.
 
-%TODO: populate machine translations with real values
-
 \begin{table}[H]
 \centering
 \begin{tabular}{ l | l }
 \textbf{Sequencer Instruction} & \textbf{Binary}\\\hline
-\texttt{PUSH R0 0x0} & \texttt{0101 0101}\\
-\texttt{PUSH R1 0x1} & \texttt{0101 0101}\\
-\texttt{SEND R0} & \texttt{0101 0101}\\
-\texttt{SEND R1} & \texttt{0101 0101}\\
-\texttt{ADD R0 R1 R2} & \texttt{0101 0101}\\
-\texttt{SEND R2} & \texttt{0101 0101}\\
-\texttt{ADD R1 R2 R0} & \texttt{0101 0101}\\
-\texttt{SEND R0} & \texttt{0101 0101}\\
-\texttt{ADD R2 R0 R1} & \texttt{0101 0101}\\
-\texttt{SEND R1} & \texttt{0101 0101}\\
-\texttt{ADD R0 R1 R2} & \texttt{0101 0101}\\
-\texttt{SEND R2} & \texttt{0101 0101}\\
-\texttt{ADD R1 R2 R0} & \texttt{0101 0101}\\
-\texttt{SEND R0} & \texttt{0101 0101}\\
-\texttt{ADD R2 R0 R1} & \texttt{0101 0101}\\
-\texttt{SEND R1} & \texttt{0101 0101}\\
-\texttt{ADD R0 R1 R2} & \texttt{0101 0101}\\
-\texttt{SEND R2} & \texttt{0101 0101}\\
-\texttt{ADD R1 R2 R0} & \texttt{0101 0101}\\
-\texttt{SEND R0} & \texttt{0101 0101}\\
-\texttt{ADD R2 R0 R1} & \texttt{0101 0101}\\
-\texttt{SEND R1} & \texttt{0101 0101}\\
-\texttt{ADD R0 R1 R2} & \texttt{0101 0101}\\
-\texttt{SEND R2} & \texttt{0101 0101}\\
-\texttt{ADD R1 R2 R0} & \texttt{0101 0101}\\
-\texttt{SEND R0} & \texttt{0101 0101}\\
-\texttt{ADD R2 R0 R1} & \texttt{0101 0101}\\
-\texttt{SEND R1} & \texttt{0101 0101}\\
-\texttt{ADD R0 R1 R2} & \texttt{0101 0101}\\
-\texttt{SEND R2} & \texttt{0101 0101}\\
-\texttt{ADD R1 R2 R0} & \texttt{0101 0101}\\
-\texttt{SEND R0} & \texttt{0101 0101}\\
-\texttt{ADD R2 R0 R1} & \texttt{0101 0101}\\
-\texttt{SEND R1} & \texttt{0101 0101}\\
+\texttt{PUSH R0 0x0} & \texttt{0000 0000}\\
+\texttt{PUSH R1 0x1} & \texttt{0001 0001}\\
+\texttt{SEND R0} & \texttt{1100 xxxx}\\
+\texttt{SEND R1} & \texttt{1101 xxxx}\\
+\texttt{ADD R0 R1 R2} & \texttt{0100 0110}\\
+\texttt{SEND R2} & \texttt{1110 xxxx}\\
+\texttt{ADD R1 R2 R0} & \texttt{1001 1000}\\
+\texttt{SEND R0} & \texttt{1100 xxxx}\\
+\texttt{ADD R2 R0 R1} & \texttt{1010 0001}\\
+\texttt{SEND R1} & \texttt{1101 xxxx}\\
+\texttt{ADD R0 R1 R2} & \texttt{0100 0110}\\
+\texttt{SEND R2} & \texttt{1110 xxxx}\\
+\texttt{ADD R1 R2 R0} & \texttt{1001 1000}\\
+\texttt{SEND R0} & \texttt{1100 xxxx}\\
+\texttt{ADD R2 R0 R1} & \texttt{1010 0001}\\
+\texttt{SEND R1} & \texttt{1101 xxxx}\\
+\texttt{ADD R0 R1 R2} & \texttt{0100 0110}\\
+\texttt{SEND R2} & \texttt{1110 xxxx}\\
+\texttt{ADD R1 R2 R0} & \texttt{1001 1000}\\
+\texttt{SEND R0} & \texttt{1100 xxxx}\\
+\texttt{ADD R2 R0 R1} & \texttt{1010 0001}\\
 \end{tabular}
-\caption{The sequencer instructions, and their corresponding machine translations, necessary to generate the first 10 Fibonacci numbers.}
+\caption{The sequencer instructions, and their corresponding machine translations, necessary to generate the first 10 Fibonacci numbers. When loaded into simulation, the ``don't care'' values were substituted for \texttt{0}, but it is important to note that we could have just as easily used \texttt{1}.}
 \label{table:fib}
 \end{table}
 

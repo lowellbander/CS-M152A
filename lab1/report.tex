@@ -137,9 +137,9 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 \end{enumerate}
 \subsection{Register File}
 \begin{enumerate}
-\item 
-\item 
-\item 
+\item The register file, takes as inputs, 2 read signals and 1 write signal, along with a write address and write data. The write signal tells us whether or not we will write to the address specified by \texttt{i\_wsel} with the data in \texttt{i\_wdata}. The two read signals specify where we are reading from.
+\item The register is written to in sequential code. We know this because it is located in an \texttt{always} block.
+\item The read code is combinatorial logic which we know because it is \textit{not} located in a \texttt{always} block. This would be implemented using a multiplexor that uses \texttt{i\_sel\_X}, a (in our case) 2-bit value, to determine which register we are reading out of.
 \item 
 \item 
 \end{enumerate}

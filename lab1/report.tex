@@ -41,21 +41,13 @@ The simulation was done by loading the simulation files, choosing which signals 
 
 To perform synthesis, we must import the synthesis file and then run synthesis using XST. The synthesis file contains the pin assignments and timing requirements. Our synthesis file is \texttt{nexys3.ucf}.
 
-\subsection{Technology Mapping}
+\subsection{Technology Mapping and Cell Placement}
 
-Lorem ipsum.
+Due to the lack of complexity in this project, we do not have to perform these steps.
 
-\subsection{Cell Placement}
+\subsection{Route and Bitstream Generation}
 
-Lorem ipsum.
-
-\subsection{Route}
-
-Lorem ipsum.
-
-\subsection{Bitstream Generation}
-
-Lorem ipsum.
+These two steps are performed by the "Implement Design" part of ISE. This process outputs a bitstream file, \texttt{nexys3.bit}. We must then use the bitstream file and program the device before we can run programs on it.
 
 \section{Example Program}
 

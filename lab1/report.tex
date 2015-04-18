@@ -123,16 +123,26 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 \subsection{Clock Enable}
 \begin{enumerate}
 \item The signal \texttt{clk\_en} is a clock enable signal whose assertion is a prerequisite for the modification of the \texttt{inst\_wd} and \texttt{step\_d} signals, meaning that new instructions will only be executed by the sequencer module of this clock enable is asserted.
-\item 
-\item 
+\item . % hack to make the figure stay in the right place
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{clk_en.PNG}
+\caption{The period $T$ can be calculated by taking half of the difference between the end of the second period and the beginning of the first: $T = 5.243895 - 2.622455 = 1.31072\texttt{}$ ms.}
+\end{figure}
+\item The value of the 16-bit \texttt{clk\_dv} signal is 0 when \texttt{clk\_en} is 1.
 \item 
 \end{enumerate}
 \subsection{Instruction Valid}
 \begin{enumerate}
-\item 
-\item 
-\item 
-\item 
+\item The \texttt{inst\_vld} signal is set if \texttt{btnS}, the middle button that executes an instruction, was pressed during the last clock cycle, but not the clock cycle before that.
+\item The first simulation time interval during which the expression inst\_vld = ~step\_d[0] \& step\_d[1] \& clk\_en\_d evaluates to 1 occurs at 5.243905 ms.
+\item We use \texttt{clk\_en\_d} instead of \texttt{clk\_en} so that instruction execution occurs a clock cycle later than it would with \texttt{clk\_en}.
+\item . % hack to make the figure stay in the right place
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{inst_vld.PNG}
+\caption{A waveform capture that clearly shows the timing relationship between  \texttt{clk\_en}, \texttt{step\_d[1]}, \texttt{step\_d[0]}, \texttt{btnS}, \texttt{clk\_en\_d}, and \texttt{inst\_vld}.}
+\end{figure}
 \item 
 \end{enumerate}
 \subsection{Register File}
@@ -141,7 +151,12 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 \item The register is written to in sequential code. We know this because it is located in an \texttt{always} block.
 \item The read code is combinatorial logic which we know because it is \textit{not} located in a \texttt{always} block. This would be implemented using a multiplexor that uses \texttt{i\_sel\_X}, a (in our case) 2-bit value, to determine which register we are reading out of.
 \item 
-\item 
+\item . % hack to make the figure stay in the right place
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{register.PNG}
+\caption{A waveform that shows the first time register 3 is written with a non-zero value.}
+\end{figure}
 \end{enumerate}
 
 \section{Exercise 2}

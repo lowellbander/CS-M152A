@@ -1,5 +1,6 @@
 \documentclass[]{article}
 
+\usepackage{listings}	
 \usepackage{float}
 \usepackage{graphicx}
 
@@ -130,7 +131,12 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 \caption{The period $T$ can be calculated by taking half of the difference between the end of the second period and the beginning of the first: $T = 5.243895 - 2.622455 = 1.31072\texttt{}$ ms.}
 \end{figure}
 \item The value of the 16-bit \texttt{clk\_dv} signal is 0 when \texttt{clk\_en} is 1.
-\item 
+\item . % hack to make the figure stay in the right place
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{clk_en.jpg}
+\caption{A simple schematic illustrating the logical relationship amongst clk\_dv, clk\_en, and clk\_en\_d signals.}
+\end{figure}
 \end{enumerate}
 \subsection{Instruction Valid}
 \begin{enumerate}
@@ -143,14 +149,24 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 \includegraphics[width=10cm]{inst_vld.PNG}
 \caption{A waveform capture that clearly shows the timing relationship between  \texttt{clk\_en}, \texttt{step\_d[1]}, \texttt{step\_d[0]}, \texttt{btnS}, \texttt{clk\_en\_d}, and \texttt{inst\_vld}.}
 \end{figure}
-\item 
+\item . % hack to make the figure stay in the right place
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{inst_vld.jpg}
+\caption{A simple schematic illustrating the logical relationship amongst clk\_en, step\_d[1], step\_d[0], btnS, clk\_en\_d, and inst\_vld.}
+\end{figure}
 \end{enumerate}
 \subsection{Register File}
 \begin{enumerate}
 \item The register file, takes as inputs, 2 read signals and 1 write signal, along with a write address and write data. The write signal tells us whether or not we will write to the address specified by \texttt{i\_wsel} with the data in \texttt{i\_wdata}. The two read signals specify where we are reading from.
 \item The register is written to in sequential code. We know this because it is located in an \texttt{always} block.
 \item The read code is combinatorial logic which we know because it is \textit{not} located in a \texttt{always} block. This would be implemented using a multiplexor that uses \texttt{i\_sel\_X}, a (in our case) 2-bit value, to determine which register we are reading out of.
-\item 
+\item  . % hack to make the figure stay in the right place
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{rf.jpg}
+\caption{A circuit diagram of the register file block.}
+\end{figure}
 \item . % hack to make the figure stay in the right place
 \begin{figure}[H]
 \centering
@@ -164,6 +180,16 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 %TODO: complete this section
 
 \subsection{Nicer UART Output}
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{nicerUART.PNG}
+\caption{Output of the modified testbench, where per-byte output is suppressed.}
+\end{figure}
+
+To accomplish this, we replaced the single \texttt{\$display} line in the original file with the following lines of code, which buffer the output of the program before flushing them all to the display.
+
+\lstinputlisting[language=Verilog, firstline=46, lastline=60]{model_uart.v}
+
 \subsection{An Easier Way to Load Sequencer Program}
 
 \begin{enumerate}

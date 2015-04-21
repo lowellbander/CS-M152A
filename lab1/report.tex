@@ -91,21 +91,20 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 \texttt{SEND R1} & \texttt{1101 xxxx}\\
 \texttt{ADD R0 R1 R2} & \texttt{0100 0110}\\
 \texttt{SEND R2} & \texttt{1110 xxxx}\\
-\texttt{ADD R1 R2 R0} & \texttt{1001 1000}\\
+\texttt{ADD R1 R2 R0} & \texttt{0101 1000}\\
 \texttt{SEND R0} & \texttt{1100 xxxx}\\
 \texttt{ADD R2 R0 R1} & \texttt{1010 0001}\\
 \texttt{SEND R1} & \texttt{1101 xxxx}\\
 \texttt{ADD R0 R1 R2} & \texttt{0100 0110}\\
 \texttt{SEND R2} & \texttt{1110 xxxx}\\
-\texttt{ADD R1 R2 R0} & \texttt{1001 1000}\\
+\texttt{ADD R1 R2 R0} & \texttt{0101 1000}\\
 \texttt{SEND R0} & \texttt{1100 xxxx}\\
-\texttt{ADD R2 R0 R1} & \texttt{1010 0001}\\
+\texttt{ADD R2 R0 R1} & \texttt{0110 0001}\\
 \texttt{SEND R1} & \texttt{1101 xxxx}\\
 \texttt{ADD R0 R1 R2} & \texttt{0100 0110}\\
 \texttt{SEND R2} & \texttt{1110 xxxx}\\
-\texttt{ADD R1 R2 R0} & \texttt{1001 1000}\\
+\texttt{ADD R1 R2 R0} & \texttt{0101 1000}\\
 \texttt{SEND R0} & \texttt{1100 xxxx}\\
-\texttt{ADD R2 R0 R1} & \texttt{1010 0001}\\
 \end{tabular}
 \caption{The sequencer instructions, and their corresponding machine translations, necessary to generate the first 10 Fibonacci numbers. When loaded into simulation, the ``don't care'' values were substituted for \texttt{0}, but it is important to note that we could have just as easily used \texttt{1}.}
 \label{table:fib}

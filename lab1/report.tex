@@ -24,8 +24,6 @@
 
 \section{FPGA Design Workflow}
 
-%TODO: complete this section
-
 \subsection{Design}
 
 The design stage of the FPGA development workflow is done outside of the the Xilinx ISE and its simulation tools, for it solely consists of the drawing of logical schematics so that the designer may understand the higher level functioning of the module to be constructed.
@@ -118,8 +116,6 @@ For this section, we generated the first 10 Fibonacci numbers by writing the nec
 
 \section{Exercise 1}
 
-%TODO: complete this section
-
 \subsection{Clock Enable}
 \begin{enumerate}
 \item The signal \texttt{clk\_en} is a clock enable signal whose assertion is a prerequisite for the modification of the \texttt{inst\_wd} and \texttt{step\_d} signals, meaning that new instructions will only be executed by the sequencer module of this clock enable is asserted.
@@ -192,16 +188,19 @@ To accomplish this, we replaced the single \texttt{\$display} line in the origin
 \subsection{An Easier Way to Load Sequencer Program}
 
 \begin{enumerate}
-\item 
-\item
+\item Line 56 instantiates a nexys3 module named uut\_. This is where tb.v sends instructions to the UUT. The instructions are stored in the 8 bit register sw.
+
+\lstinputlisting[language=Verilog, firstline=76, lastline=85]{tb.v}
+
+\item The user tasks called are: tskRunPUSH, tskRunSEND, tskRunADD, tskRunMULT which each call the user task tskRunInst.
 \end{enumerate}
 
-\begin{enumerate}
-\item 
-\item
-\item
-\end{enumerate}
+To accomplish loading instructions from a file, we used the following code.
+
+\lstinputlisting[language=Verilog, firstline=39, lastline=47]{tb.v}
 
 \subsection{Fibonacci Numbers}
+
+The code was fed in through a file. The instructions are the same as those listed under the Fibonacci section.
 
 \end{document}

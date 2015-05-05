@@ -1,6 +1,6 @@
 \documentclass[]{article}
 
-\usepackage{listings}	
+\usepackage{listings}
 \usepackage{float}
 \usepackage{graphicx}
 
@@ -59,32 +59,51 @@ The final two modules below implement the 3rd module described above in subsecti
 
 \begin{lstlisting}[frame=single, language=verilog, caption= Excerpt from main \texttt{fpcvt.v} module.]
 twosComplementToSignMagnitude ttsm(.I(D), .S(S), .M(mag));
-    
+
 leadingZeroesCount lzc(.I(mag), .O(zeroCount));
-    
-extractSignicifandAndRoundBit esr(.I(mag), 
+
+extractSignicifandAndRoundBit esr(.I(mag),
 .zeros(zeroCount), .significand(tempF), .round(round));
 
-roundValueIfRound rvir(.I(tempF), .roundedVal(rv), 
+roundValueIfRound rvir(.I(tempF), .roundedVal(rv),
 .Round(round), .overflow(overflow));
 
-handleOverflow ho(.I(D), .roundedVal(rv), .significand(F), 
+handleOverflow ho(.I(D), .roundedVal(rv), .significand(F),
 .oldE(tempE), .exponent(E), .overflow(overflow));
 \end{lstlisting}
 
 \section{Simulation Documentation}
+
+The simulation consisted of loading the test cases from a file. Each test case was composed of an input and expected output. We then checked to see if the output produced from our module and the corresponding input was the same as the expected output.
+
+Here is the code that did that:
+
+\lstinputlisting[language=Verilog, firstline=61, lastline=80]{tb.v}
+
+By using ISE Simulator, we were also able to inspect intermediate values both between and within our submodules. This was crucial in our debugging process because we failed to test each submodule individually, a mistake we will not be repeating on the future labs.
+
+Here is the output of running the provided test cases:
+
+\includegraphics[width=10cm]{output.PNG}
+
+Here is the waveform diagram including intermediate values of a single test case:
+
+\includegraphics[width=10cm]{waveform.PNG}
+
+
+One major bug we ran into was using the exponent value in place of the number of leading zeroes. Due to their similarity, this error went unnoticed initially until we tried an edge case. Ultimately, we never fixed all of the bugs.
+
 \section{Conclusion}
 For most cases we tested, our Logisim schematic outputted the expected values. It only failed for a few edge cases, which we remedied with hack-y fixes that modified our result for the very specific extremes encountered during floating point conversion. However, our conversion from Logisim to Verilog was imperfect, and we often had logic errors as a result of forgetting to implement parts of modules in Verilog which we had implemented in Logisim.\\
 
 We often stumbled due to misunderstandings of Verilog, such as when to use \texttt{wire} instead of \texttt{reg}. We also made the mistake of writing all of our code before testing it, creating our textbench \texttt{tb.v} at the very end.
 
-\includegraphics[width=10cm]{output.PNG}
+\includegraphics[width=10cm]{logisim.PNG}
 
-\includegraphics[width=10cm]{waveform.PNG}
 
 \lstinputlisting[language=Verilog, firstline=1, lastline=2]{fpcvt.v}
 
-\lstinputlisting[language=Verilog, firstline=25, lastline=26]{tb.v}
+
 
 \end{document}
 

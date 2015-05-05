@@ -14,7 +14,7 @@
 
 \begin{document}
 
-\title{Lab 2}
+\title{Lab 2: Floating Point Conversion}
 \subtitle{CS M152A}
 \author{Aman Agarwal \& Lowell Bander}
 
@@ -72,11 +72,11 @@ handleOverflow ho(.I(D), .roundedVal(rv), .significand(F),
 .oldE(tempE), .exponent(E), .overflow(overflow));
 \end{lstlisting}
 
-
-
 \section{Simulation Documentation}
 \section{Conclusion}
+For most cases we tested, our Logisim schematic outputted the expected values. It only failed for a few edge cases, which we remedied with hack-y fixes that modified our result for the very specific extremes encountered during floating point conversion. However, our conversion from Logisim to Verilog was imperfect, and we often had logic errors as a result of forgetting to implement parts of modules in Verilog which we had implemented in Logisim.\\
 
+We often stumbled due to misunderstandings of Verilog, such as when to use \texttt{wire} instead of \texttt{reg}. We also made the mistake of writing all of our code before testing it, creating our textbench \texttt{tb.v} at the very end.
 
 \includegraphics[width=10cm]{output.PNG}
 

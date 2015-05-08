@@ -23,11 +23,29 @@
 
 \section{Overview}
 
+For our project, we will be creating an FPGA adaptation of the memory-based game ``Simon." A sequence of LED's will flash in a particular order, after which the player will be expected to repeat the sequence by flipping the corresponding switched in the same order.\\
+
 \section{Design Description}
+
+Gameplay begins as follows: A single LED will flash, and the user will flip the switch below this LED. In each subsequent round, the number of LED's sequentially illuminated will increment by 1, thereby increasingly the difficulty of the task. \\
+
+In the $i$th round, the sequence of the first $i-1$ flashes will be identical to those in the previous round, and the position of the $i$th flashing LED will be randomly generated.\\
+
+Throughout gameplay, the 7-segment display will show the user's current score. Time permitting, the display will present fun messages to the player. Given that the display can only present 4 characters at a time, the aforementioned text may scroll to present longer messages to the player.
 
 \section{Design Milestones and Grading Rubrics}
 
-\section{Conclusion}
+\begin{table}[H]
+\centering
+\begin{tabular}{c | p{3.5cm} | p{3.5cm}}
+&\textbf{Full Credit} & \textbf{Half Credit}\\\hline
+\textbf{Sequence Generation}  & 30\% - Game generates a random sequence of LED's. &  15\% - Game generates a fixed sequence of LED's.  \\\hline
+\textbf{User Input}  &  30\% - Game differentiates between correct and incorrect user input all of the time. & 15\% - Game differentiates between correct and incorrect user input most of the time.\\\hline
+\textbf{Score Output} &  30\% - At the end of each level, the game outputs the player's current score. (Optionally, other bells \& whistles.)& 15\% - When user flips an incorrect switch, the game presents output signifying the user has lost. \\\hline
+\textbf{Reset} &  10\% - Pressing `Reset' starts the game over.& 5\% - No reset functionality.\\\hline
+\end{tabular}
+
+\end{table}
 
 \end{document}
 

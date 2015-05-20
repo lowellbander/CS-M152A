@@ -23,13 +23,25 @@
 
 \section{Introduction}
 
+In this lab, we implemented a simple stopwatch. The stopwatch counts up from 00:00 to 59:59 over the course of one hour during normal operation, then resets to 00:00. \\
+
+Additionally, the stopwatch can be paused, manually reset, and the minutes and the seconds stopwatch can be modified individually at a rate of twice the normal rate. During such modification, the digits being modified blink to indicate their modification.
+
 \section{Design Description}
 
 \subsection{High Level Design}
 
 \subsection{Low Level Implementation}
 
-\section{Simulation Documentation}\section{Conclusion}
+\section{Simulation Documentation}
+
+In our first labs, we made the faux pas of writing all of our code before testing any of it. This time, we developed in a very incremental and modular manner. For example, we began with a simple counter module, created a test bench for it, then chained them together to make a larger module, then tested that module, and so on. We hope this made it easy to catch issues early on in the development process.\\
+
+In addition to testing each module as it was developed, we tested the entire device as a whole once development was complete. Namely, we tested every state transition pictured in Figure ???.\\
+
+During simulation, we found several errors. For example, we discovered that the module which divides our clock wasn't functioning properly for one of our clocks.
+
+\section{Conclusion}
 
 
 \end{document}

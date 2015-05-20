@@ -32,7 +32,7 @@ Additionally, the stopwatch can be paused, manually reset, and the minutes and t
 \subsection{High Level Design}
 \label{subsec:highlevel}
 
-To design a stopwatch we used 3 main modules. The \texttt{state} module kept track of the stopwatch's state. The \texttt{clockConverter} module converted the input 100MHz clock to multiple different clocks of different frequencies. The \texttt{timer} module held the actual time.
+To design a stopwatch we used 3 main modules. The \texttt{state} module kept track of the stopwatch's state. The \texttt{clockConverter} module converted the 100MHz input clock to multiple different clocks of different frequencies. The \texttt{timer} module held the actual time.\\
 
 Here is how our overall design looked like:
 
@@ -40,15 +40,20 @@ Here is how our overall design looked like:
 
 \subsection{Low Level Implementation}
 
-The source code displayed below is an a excerpt from our main module, \texttt{stopw.v}. The 3 modules described in subsection~\ref{subsec:highlevel} above are show here along with other auxilliary modules.
+The source code displayed below is an a excerpt from our main module, \texttt{stopw.v}. The 3 modules described in subsection~\ref{subsec:highlevel} above are shown here along with other auxiliary modules.
 
 \lstinputlisting[language=Verilog, firstline=54, lastline=106]{stopw.v}
 
 The \texttt{clockConverter} module created new clock signals at different frequencies by using a counter whose carry output became the new clock signal.
 
-The state machine was a Mealy state machine that used its current state and input signals to determine its next state and output. The output was in the form of an instruction which was then decoded by the \texttt{instructionDecoder} module into signals that the \texttt{timer} module accepts. This drawing describes the state machine:
+The state machine was a Mealy state machine that used its current state and input signals to determine its next state and output. The output was in the form of an instruction which was then decoded by the \texttt{instructionDecoder} module into signals that the \texttt{timer} module accepts. This drawing describes the state machine:\\
 
+\begin{figure}[H]
+\centering
 \includegraphics[width=11cm]{state_diagram.jpeg}
+\caption{State transition diagram.}
+\label{fig:state}
+\end{figure}
 
 Along with some other modules, the \texttt{timer} module heavily relied upon counters. Because counters were so useful in this lab, we created a \texttt{CounterN} module that took as a general parameter $N$ the counter's range (from $0$ through $N - 1$).
 
@@ -58,18 +63,11 @@ The \texttt{timer} module kept track of the actual time and also responded to in
 
 We have a \texttt{timeToDisplay} module which then took this input and converted it into the seg and an outputs for the seven-segment display. This module also takes care of flashing and cycling through each of the anodes.
 
-
-
-
-
-
-
-
 \section{Simulation Documentation}
 
 In our first labs, we made the faux pas of writing all of our code before testing any of it. This time, we developed in a very incremental and modular manner. For example, we began with a simple counter module, created a test bench for it, then chained them together to make a larger module, then tested that module, and so on. We hope this made it easy to catch issues early on in the development process.\\
 
-In addition to testing each module as it was developed, we tested the entire device as a whole once development was complete. Namely, we tested every state transition pictured in Figure ???.\\
+In addition to testing each module as it was developed, we tested the entire device as a whole once development was complete. Namely, we tested every state transition pictured in Figure~\ref{fig:state}.\\
 
 During simulation, we found several errors. For example, we discovered that the module which divides our clock wasn't functioning properly for one of our clocks.
 

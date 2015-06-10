@@ -32,7 +32,16 @@ Additionally during the game, the seven segment display shows the current level 
 \section{Design Description}
 
 \subsection{High Level Design}
-\label{subsec:highlevel}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{highLevel.png}
+\caption{A high level diagram of our Simon game.}
+\label{fig:high}
+\end{figure}
+
+As can be seen in the figure above, our top-level module accepts two main user inputs: \texttt{HardMode}, which indicates the difficulty level the user would enjoy, and \texttt{sw}, which represents the guesses the user makes during gameplay.\\
+
+The \texttt{Led} output flashes lights above each switch to indicate to the user which of the four switches must be flipped during the level at hand. The \texttt{level} signal maps to the remaining 4 LEDs and shows the binary representation of the current level. Lastly, the \texttt{seg} and \texttt{an} outputs serve a similar purpose, except that they output the decimal representation of the current level.
 
 \subsection{Low Level Implementation}
 

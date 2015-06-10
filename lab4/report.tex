@@ -24,8 +24,8 @@
 \newpage
 
 \section{Introduction}
-
-In this lab, we implemented an FPGA adaptation of the memory game, "Simon". A sequence of LED's flashes in a particular order, after which the player inputs the sequence in the same order using the FPGA's switches. If successful, the user goes onto the next level which displays the same sequence of LEDs along with an additional, new random LED. \\
+ 
+In this lab, we implemented an FPGA adaptation of the memory game, ``Simon". A sequence of LED's flashes in a particular order, after which the player inputs the sequence in the same order using the FPGA's switches. If successful, the user goes onto the next level which displays the same sequence of LEDs along with an additional, new random LED. \\
 
 Additionally during the game, the seven segment display shows the current level that the user is on. The user can also play the game in a harder (faster) mode by flipping the difficulty switch.
 
@@ -44,7 +44,17 @@ As can be seen in the figure above, our top-level module accepts two main user i
 The \texttt{Led} output flashes lights above each switch to indicate to the user which of the four switches must be flipped during the level at hand. The \texttt{level} signal maps to the remaining 4 LEDs and shows the binary representation of the current level. Lastly, the \texttt{seg} and \texttt{an} outputs serve a similar purpose, except that they output the decimal representation of the current level.
 
 \subsection{Low Level Implementation}
+At a much smaller granularity, the our implementation of Simon proceeds as follows.\\
 
+At setup, a random sequence is generated. The LFSR generates 2-bit random numbers one at a time, which are decoded to corresponding 4-bit values, and then shifted into a shift register. This operation halts when a counter reaches a preset value.\\
+
+At this point, normal game logic proceeds. First, a single LED is flashed, instructing the user to flip the corresponding switch. If the user's input is incorrect, the game restarts. Alternatively, if the user's input is correct, the sequence of LEDs which are flashed is extended to contain 2 LEDs, and so on, until the user fails. The aforementioned validation is performed on every unit of user input, as opposed to validating the entire vector.\\
+
+Throughout gameplay, the value of the current level is displayed in binary on the remaining four LEDs and is displayed in decimal on the 7 segment display.\\
+
+All user input is routed through a debouncing unit before it arrives at the gameplay logic. This ensures that user input is only registered if it remains the same for at least 3 clock cycles.\\
+
+Some functions, such as generating random numbers and validating user input can be performed using the very fast system clock, but other functions require a much slower clock. To accommodate this, a clock converter takes the system clock as input and outputs to slower clocks, the first of which is a 1 Hz clock which is used for flashing LEDs to the user. In the event that the \texttt{HardMode} signal is asserted, this signal is sped up to operate on a 2Hz clock. The other clock outputted by the converted module is much faster than the display clock but much slower than the system clock, and is used for the logic which controls the 7 segment display.
 
 \section{Simulation Documentation}
 

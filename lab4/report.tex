@@ -62,7 +62,34 @@ Along with simulating and testing the overall game, we modularized our code and 
 
 For the overall game, we simulated the game from level one through level 10 and covered both correct and incorrect input. We discovered that when the user inputs an incorrect switch, the program did not produce a new random sequence but instead restarted the game using the same sequence from before. \\
 
-Our simulation of the randomSequenceGenerator module showed that not only was our sequence ``pseudo-random", it had a period of 7 numbers. We then adjusted to increase that number.
+Our simulation of the randomSequenceGenerator module showed that not only was our sequence ``pseudo-random", it had a period of 7 numbers. We then adjusted to increase that number.\\
+
+We simulated both the easier and harder difficulties to see the differences.\\
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{EasyMode.PNG}
+\caption{Simulation of Simon in Easy mode.}
+\label{fig:easy}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{HardMode.PNG}
+\caption{Simulation of Simon in Hard mode, twice the speed of Easy mode.}
+\label{fig:hard}
+\end{figure}
+
+Because we had difficulties in Lab 3 with the Seven-Segment Display working properly, we simulated it. \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{sevensegEasy.PNG}
+\caption{The simulation of the seven segment display of the game in action.}
+\label{fig:sevenseg}
+\end{figure}
+
 
 \section{Conclusion}
 Being that this was our final project, we were able to learn from our mistakes from past projects. For our first project of this course, we made the mistake of writing all of our code in one big module and didn't test anything until we were done. In response to this, for our second project, we used very, very modular code fraught with good coding practices. Though this was aesthetically satisfying and avoided the problems encountered during our first project, the development process was too slow and as a result we were unable to finish our project before the deadline; that is to say, we would only have been able to see the fruit of our good coding practices were we to continue with the same codebase for several projects.\\
